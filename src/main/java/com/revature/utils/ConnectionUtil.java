@@ -22,7 +22,7 @@ public class ConnectionUtil {
 		//We need to provide the database credentials
 		//format for connections: jdbc:postgresql://{host}[:{port}]/[{database}]
 		//the curly braces {} and square brackets[] are not needed. Remove them
-		String url = "jdbc:postgresql://localhost:5432/postgres?currentSchema=public";
+		String url = "jdbc:postgresql://firstpostgresql.cbp62wpzrvxv.us-east-2.rds.amazonaws.com:5432/postgres?currentSchema=public";
 		String username = "postgres";
 		String password = "password";
 		

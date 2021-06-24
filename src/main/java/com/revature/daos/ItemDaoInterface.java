@@ -10,6 +10,10 @@ public interface ItemDaoInterface {
 	
 	public void addItem(Item t);
 	
-	
+
+	public void updateItemName(int itemID, String newName);
+	public void updateObtainMethod(int itemID, int newMethod);
+	public void updateItemType(int itemID, int newType);
+	public void deleteItem(int itemID);
 
 }

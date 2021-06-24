@@ -81,6 +81,83 @@ public class ItemDao implements ItemDaoInterface {
 		
 	}
 	
+	public void updateItemName(int itemID, String newName) {
+		try(Connection conn = ConnectionUtil.getConnection()){
+			String sql = "UPDATE items SET item_name = ? WHERE item_id = ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, newName);
+			ps.setInt(2, itemID);
+			
+			ps.executeUpdate();
+			
+			System.out.println("Item "+ itemID + " renamed to " + newName);
+			
+		}
+		catch(SQLException e) { //catches issues with accessing our data
+			System.out.println("There was an issue accessing the database");
+			e.printStackTrace();
+		}
+		
+	}
 
+	public void updateObtainMethod(int itemID, int newMethod) {
+		try(Connection conn = ConnectionUtil.getConnection()){
+			String sql = "UPDATE items SET obtain_method = ? WHERE item_id = ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, newMethod);
+			ps.setInt(2, itemID);
+			
+			ps.executeUpdate();
+			
+			System.out.println("Item "+ itemID + " obtain method adjusted to " + newMethod);
+			
+		}
+		catch(SQLException e) { //catches issues with accessing our data
+			System.out.println("There was an issue accessing the database");
+			e.printStackTrace();
+		}
+		
+	}
+	public void updateItemType(int itemID, int newType) {
+		try(Connection conn = ConnectionUtil.getConnection()){
+			String sql = "UPDATE items SET item_type = ? WHERE item_id = ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, newType);
+			ps.setInt(2, itemID);
+			
+			ps.executeUpdate();
+			
+			System.out.println("Item "+ itemID + " item type adjusted to " + newType);
+			
+		}
+		catch(SQLException e) { //catches issues with accessing our data
+			System.out.println("There was an issue accessing the database");
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public void deleteItem(int itemID) {
+		try(Connection conn = ConnectionUtil.getConnection()){
+			String sql = "DELETE FROM items WHERE item_id = ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, itemID);
+			
+			ps.executeUpdate();
+			
+			System.out.println("Item "+ itemID + " has been deleted");
+			
+		}
+		catch(SQLException e) { //catches issues with accessing our data
+			System.out.println("There was an issue accessing the database");
+			e.printStackTrace();
+		}
+		
+	}
+	
+
+	
 	
 }
