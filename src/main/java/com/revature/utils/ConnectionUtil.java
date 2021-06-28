@@ -3,8 +3,14 @@ package com.revature.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.revature.daos.ItemDao;
 
 public class ConnectionUtil {
+	
+	final static Logger log = LogManager.getLogger(ConnectionUtil.class);
 	
 	public static Connection getConnection() throws SQLException {
 		
@@ -17,6 +23,7 @@ public class ConnectionUtil {
 		catch(ClassNotFoundException e) {
 			System.out.println("Class was not found");
 			e.printStackTrace();
+			log.warn("Database connection failed");
 		}
 		
 		//We need to provide the database credentials

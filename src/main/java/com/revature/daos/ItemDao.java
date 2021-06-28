@@ -8,11 +8,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.models.Item;
 import com.revature.utils.ConnectionUtil;
 
 public class ItemDao implements ItemDaoInterface {
 
+	final Logger log = LogManager.getLogger(ItemDao.class);
+	
 	@Override
 	public List<Item> getItems() {
 		// TODO Auto-generated method stub
@@ -46,6 +51,7 @@ public class ItemDao implements ItemDaoInterface {
 		catch(SQLException e) { //catches issues with accessing our data
 			System.out.println("There was an issue accessing the database");
 			e.printStackTrace();
+			log.warn("Database connection failed, read did not succeed");
 		}
 		
 		
@@ -73,10 +79,13 @@ public class ItemDao implements ItemDaoInterface {
 			
 			//send confirmation to the console if successful
 			System.out.println("New Item "+ t.getItem_name() + " added successfully");
+			
+			log.info("User has added a new item. The item name is " + t.getItem_name());
 		}
 		catch(SQLException e) { //catches issues with accessing our data
 			System.out.println("There was an issue accessing the database");
 			e.printStackTrace();
+			log.warn("Database connection failed, add item did not succeed");
 		}
 		
 	}
@@ -96,6 +105,7 @@ public class ItemDao implements ItemDaoInterface {
 		catch(SQLException e) { //catches issues with accessing our data
 			System.out.println("There was an issue accessing the database");
 			e.printStackTrace();
+			log.warn("Database connection failed, update did not succeed");
 		}
 		
 	}
@@ -115,6 +125,7 @@ public class ItemDao implements ItemDaoInterface {
 		catch(SQLException e) { //catches issues with accessing our data
 			System.out.println("There was an issue accessing the database");
 			e.printStackTrace();
+			log.warn("Database connection failed, update did not succeed");
 		}
 		
 	}
@@ -133,6 +144,7 @@ public class ItemDao implements ItemDaoInterface {
 		catch(SQLException e) { //catches issues with accessing our data
 			System.out.println("There was an issue accessing the database");
 			e.printStackTrace();
+			log.warn("Database connection failed, update did not succeed");
 		}
 		
 		
@@ -148,11 +160,13 @@ public class ItemDao implements ItemDaoInterface {
 			ps.executeUpdate();
 			
 			System.out.println("Item "+ itemID + " has been deleted");
+			log.info("User deleted item of id " +itemID);
 			
 		}
 		catch(SQLException e) { //catches issues with accessing our data
 			System.out.println("There was an issue accessing the database");
 			e.printStackTrace();
+			log.warn("Database connection failed, delete did not succeed");
 		}
 		
 	}

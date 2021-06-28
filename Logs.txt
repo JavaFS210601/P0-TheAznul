@@ -1,0 +1,1 @@
+2021-06-28 10:47:11 INFO  ItemDao:83 - User has added a new item. The item name is Basketball
